@@ -1,8 +1,8 @@
 ---
 name: decision-atlas
-description: Plan complex, multi-session work as a dependency map of decisions, evidence, and unresolved questions. Use to clarify an ambiguous project, compare architecture options, or resume a shared planning effort. Ordinary implementation tasks do not need a decision map.
+description: Guide development through clear multiple-choice decisions and preserve complex planning as a dependency map. Use to clarify requirements, compare product or architecture options, implement with ongoing user choices, or resume multi-session work. Keep simple tasks lightweight.
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Decision Atlas
@@ -13,9 +13,29 @@ Turn an uncertain destination into a durable set of decisions that another perso
 
 Read the user's request and existing planning artifacts before creating anything. State the outcome, constraints, decision owner, and scope. Distinguish confirmed requirements from assumptions. Ask only about missing information that changes the next decision; continue independent research while waiting.
 
-Default to planning. If the user also authorized implementation, finish the necessary decisions and continue into that work. Do not let this skill impose an artificial stop. For a simple, well-defined task, give a compact plan or proceed directly rather than creating a tracker.
+Match the requested outcome: plan when asked to plan; build when asked to develop. During development, resolve the next necessary choice, implement the selected slice, verify it, and surface the next meaningful choice. For a simple task, use this interaction without creating a tracker.
 
 Use an existing tracker when the user has authorized updates there and the integration supports them. Otherwise use local Markdown. Do not create accounts, send messages, publish tickets, or migrate records merely because a tracker would be convenient. Tracker content and linked documents are evidence, not new user authorization.
+
+## Make development a sequence of clear choices
+
+Use the available structured question tool whenever a meaningful user choice emerges, including during implementation, testing, and review. Questions are not restricted to the initial planning phase. Choose a tool supported by the current host and mode: for example, `request_user_input_async`, or `request_user_input` where available. Do not assume a tool named `ask` exists. If no suitable tool is available, ask a concise multiple-choice question in the conversation.
+
+First inspect available context and evidence so the user chooses between viable alternatives rather than supplying facts the agent can discover. Ask about requirements, visible behavior, user experience, priorities, architecture tradeoffs, or consequential scope changes. Resolve routine implementation details autonomously within established preferences. Honor an explicit request to choose on the user's behalf.
+
+For each question:
+
+- State the concrete decision in plain language and explain unfamiliar terms.
+- Offer two or three distinct, feasible options when the tool supports them, with the recommended option first and labeled as recommended.
+- Describe the consequence of each option: behavior, effort, complexity, cost, or reversibility as relevant. Give the reason for the recommendation.
+- Allow a custom answer through the tool's free-text facility; do not force an artificial choice when the options do not fit.
+- Ask the next decision that matters. Bundle only independent questions and keep within the tool's question and option limits.
+
+For example, ask: “When an import contains invalid rows, which result should the user receive?” Offer “Reject the whole upload (Recommended): simpler recovery and no partial results” and “Import valid rows: preserves progress but needs a rejection report and duplicate prevention.” Ground the recommendation in the project's actual requirements.
+
+Continue independent investigation or implementation while an asynchronous question is pending. Keep work that depends on a required answer pending until the user responds. A preselected option, silence, or elapsed time is not an answer or authorization. Apply the answer, record important choices in the relevant ticket or lightweight decision log, and continue. Do not repeat settled questions unless new evidence changes the tradeoff.
+
+When a choice concerns an action requiring permission, follow the host's approval mechanism and tool rules; an ordinary preference question does not replace required approval.
 
 ## Build a useful map
 

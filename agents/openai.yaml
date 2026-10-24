@@ -1,4 +1,4 @@
 interface:
   display_name: "Decision Atlas"
-  short_description: "Turn ambiguous projects into actionable decisions"
-  default_prompt: "Use $decision-atlas to map the decisions needed for this project and resolve the next ready question."
+  short_description: "Guide development through clear user choices"
+  default_prompt: "Use $decision-atlas to develop this project through clear multiple-choice questions, then implement and verify my selections."

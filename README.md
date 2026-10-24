@@ -1,10 +1,24 @@
 # Decision Atlas
 
-**Turn an ambiguous project into a navigable set of decisions.**
+**Turn development into clear choices, then build from the answers.**
 
 Decision Atlas is an agent skill for planning work that spans multiple conversations. It turns a broad goal into focused questions, connects their dependencies, and preserves the evidence behind each choice. The next session can resume from a durable map instead of reconstructing the discussion.
 
 It is useful for architecture choices, product discovery, migration planning, and any effort where the important uncertainty is what to decide before building. It is unnecessary for a small task whose requirements and implementation path are already clear.
+
+## Development through choices
+
+Use the structured question tool throughout the work whenever a meaningful product, experience, scope, or architecture choice appears. Each question offers two or three viable options, a recommendation with reasons, and the tradeoff behind each option. You can also give a custom answer.
+
+The agent investigates first, asks the next useful question, implements your selection, verifies the result, and repeats as needed. Routine engineering details proceed within the choices already made. Independent work continues while an answer is pending; dependent work waits for a required answer.
+
+```text
+Use $decision-atlas to build this feature through multiple-choice decisions.
+Use the question tool whenever an important choice appears, explain the
+tradeoffs, recommend an option, then implement and verify my selection.
+```
+
+This works for small features without a map. A durable decision map becomes useful when the project spans many questions or sessions. The host determines which question tools are available; the skill falls back to a concise conversational question when necessary.
 
 ## How it works
 
